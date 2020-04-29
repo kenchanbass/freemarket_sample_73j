@@ -26,16 +26,11 @@
               .exhibit__main__itemProfile__inputForm__sellImage__upload__box
                 .prev-content
                 .label-content
-                  %label{for: "item_item_imgs_attributes_0_image", class: "label-box", id: "label-box--0"}
+                  = f.label :item_imgs, class: "label-box", id: "label-box--0" do
                     %pre.label-box__text-visible クリックしてファイルをアップロード
-            .hidden-content
-              = f.fields_for :item_imgs do |i|
-                = i.file_field :url, class: "hidden-field"
-                %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][1][image]", id: "item_item_images_attributes_1_image" }
-                %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][2][image]", id: "item_item_images_attributes_2_image" }
-                %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][3][image]", id: "item_item_images_attributes_3_image" }
-                %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][4][image]", id: "item_item_images_attributes_4_image" }
-                    
+                .hidden-content
+                  = f.file_field :item_imgs, class: "hidden-field", multiple: true do
+                    商品画像
           .exhibit__main__itemProfile__inputForm__sellGoods
             .exhibit__main__itemProfile__inputForm__sellGoods__name
               .notation
