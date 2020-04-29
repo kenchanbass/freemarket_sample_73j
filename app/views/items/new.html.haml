@@ -49,7 +49,7 @@
                 商品の説明
               .formRequire
                 必須
-            = f.text_area :item_description, class: "exhibitTextarea", placeholder: "商品の説明（必須1,000文字以内）（色、重さ、素材、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでおすすめです。"
+            = f.text_area :introduction, class: "exhibitTextarea", placeholder: "商品の説明（必須1,000文字以内）（色、重さ、素材、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでおすすめです。"
             .exhibit__main__itemProfile__inputForm__sellGoods__wordCount
               0/1000
 
@@ -63,7 +63,7 @@
                     カテゴリー
                   .formRequire
                     必須
-                = f.select :category_id, Category.where(ancestry: nil).pluck(:name), { prompt: "選択してください" }, {class: 'exhibitInput', id: 'parent_category'}
+                = f.collection_select :category_id, Category.all, :id, :name, { prompt: "選択してください" }, {class: 'exhibitInput', id: 'parent_category'}
               .exhibit__main__itemProfile__inputForm__sellDetails__formBox__brand
                 .exhibit__main__itemProfile__inputForm__sellDetails__formBox__brand__write
                   .notation
@@ -71,6 +71,20 @@
                   .formAny
                     任意
                 = f.collection_select :brand_id, Brand.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput"
+              .exhibit__main__itemProfile__inputForm__sellDetails__formBox__brand
+                .exhibit__main__itemProfile__inputForm__sellDetails__formBox__brand__write
+                  .notation
+                    サイズ
+                  .formRequire
+                    必須
+                = f.collection_select :size_id, Size.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput"
+              .exhibit__main__itemProfile__inputForm__sellDetails__formBox__brand
+                .exhibit__main__itemProfile__inputForm__sellDetails__formBox__brand__write
+                  .notation
+                    配送方法
+                  .formRequire
+                    必須
+                = f.collection_select :postage_type_id, PostageType.all, :id, :postage_type, { prompt: "選択してください" }, class: "exhibitInput"
               .exhibit__main__itemProfile__inputForm__sellDetails__formBox__state
                 .exhibit__main__itemProfile__inputForm__sellDetails__formBox__state__select
                   .notation
@@ -99,7 +113,7 @@
                     発送元の地域
                   .formRequire
                     必須
-                = f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput" 
+                = f.collection_select :prefecture_code, Prefecture.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput" 
               .exhibit__main__itemProfile__inputForm__delivery__formBox__days
                 .exhibit__main__itemProfile__inputForm__delivery__formBox__days__select
                   .notation

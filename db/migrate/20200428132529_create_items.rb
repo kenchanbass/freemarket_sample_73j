@@ -15,6 +15,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.references :category, foreign_key: true
       t.references :buyer, foreign_key: { to_table: :users }
       t.references :seller, foreign_key: { to_table: :users }, null: false
+
       t.timestamp :deal_closed_date
       t.timestamps
     end
