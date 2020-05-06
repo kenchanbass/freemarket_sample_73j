@@ -18,9 +18,11 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.seller_id = current_user.id
     if @item.save
-      redirect_to root_path
+      redirect_to items_path
     else
-      redirect_to new_item_path(@item), flash: { error: @item.errors.full_messages }
+      flash[:errors] = @item.errors.full_messages
+      @item.item_imgs.new
+      render :new
     end
   end
 

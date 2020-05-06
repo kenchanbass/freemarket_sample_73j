@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
   root "items#index"
 
-  # スプリントレビューのためにitem_showを一時的に設定しています
+
   resources :items do
     collection do
       get 'get_category_children', defaults: { format: 'json' }
